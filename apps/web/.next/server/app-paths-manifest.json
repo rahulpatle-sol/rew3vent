@@ -1,0 +1,12 @@
+{
+  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
+  "/create-event/page": "app/create-event/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/events/page": "app/events/page.js",
+  "/explore/page": "app/explore/page.js",
+  "/host/dashboard/page": "app/host/dashboard/page.js",
+  "/host/dashboard/subscribers/page": "app/host/dashboard/subscribers/page.js",
+  "/login/page": "app/login/page.js",
+  "/my-events/page": "app/my-events/page.js",
+  "/my-events/registered/page": "app/my-events/registered/page.js"
+}

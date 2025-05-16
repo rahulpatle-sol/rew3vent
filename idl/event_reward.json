@@ -1,0 +1,113 @@
+{
+  "version": "0.1.0",
+  "name": "event_reward",
+  "instructions": [
+    {
+      "name": "createEvent",
+      "accounts": [
+        {
+          "name": "eventAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "date",
+          "type": "u64"
+        },
+        {
+          "name": "location",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "distributeReward",
+      "accounts": [
+        {
+          "name": "eventAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "attendeeAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "attendee",
+          "type": "publicKey"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "EventAccountData",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "date",
+            "type": "u64"
+          },
+          {
+            "name": "location",
+            "type": "string"
+          },
+          {
+            "name": "rewardMint",
+            "type": {
+              "option": "publicKey"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "Unauthorized",
+      "msg": "You are not authorized to perform this action."
+    },
+    {
+      "code": 6001,
+      "name": "EventEnded",
+      "msg": "The event has already ended."
+    }
+  ],
+  "metadata": {
+    "address": "YourProgramIdGoesHere111111111111111111111111"
+  }
+}

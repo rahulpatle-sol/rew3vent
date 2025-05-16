@@ -1,0 +1,20 @@
+[package]
+name = "event-reward"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+solana-program = "1.18.12" # Or the latest stable version
+borsh = "1.5.1" # For serialization/deserialization
+thiserror = "1.0.61" # For error handling
+spl-token = { version = "4.0.1", features = ["no-entrypoint"] } # For SPL token interactions, if needed
+anchor-lang = { version = "0.30.0", optional = true } # If using Anchor framework
+
+[lib]
+crate-type = ["cdylib", "lib"]
+
+[features]
+no-entrypoint = []
+# If using Anchor, uncomment the following line
+# default = ["anchor"]
+# anchor = ["anchor-lang"]

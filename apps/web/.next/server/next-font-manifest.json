@@ -1,0 +1,52 @@
+{
+  "app": {
+    "[project]/apps/web/src/app/create-event/page": [
+      "static/media/Geist_Variable-s.p.f406b17f.woff2",
+      "static/media/d6lPkaOxWMKm7TdezXFmpkr80PhhrGd5OQ-s.p.b10dd6f9.woff2",
+      "static/media/GeistMono_Variable.p.6bae060c.woff2"
+    ],
+    "[project]/apps/web/src/app/dashboard/page": [
+      "static/media/Geist_Variable-s.p.f406b17f.woff2",
+      "static/media/d6lPkaOxWMKm7TdezXFmpkr80PhhrGd5OQ-s.p.b10dd6f9.woff2",
+      "static/media/GeistMono_Variable.p.6bae060c.woff2"
+    ],
+    "[project]/apps/web/src/app/events/page": [
+      "static/media/Geist_Variable-s.p.f406b17f.woff2",
+      "static/media/d6lPkaOxWMKm7TdezXFmpkr80PhhrGd5OQ-s.p.b10dd6f9.woff2",
+      "static/media/GeistMono_Variable.p.6bae060c.woff2"
+    ],
+    "[project]/apps/web/src/app/explore/page": [
+      "static/media/Geist_Variable-s.p.f406b17f.woff2",
+      "static/media/d6lPkaOxWMKm7TdezXFmpkr80PhhrGd5OQ-s.p.b10dd6f9.woff2",
+      "static/media/GeistMono_Variable.p.6bae060c.woff2"
+    ],
+    "[project]/apps/web/src/app/host/dashboard/page": [
+      "static/media/Geist_Variable-s.p.f406b17f.woff2",
+      "static/media/d6lPkaOxWMKm7TdezXFmpkr80PhhrGd5OQ-s.p.b10dd6f9.woff2",
+      "static/media/GeistMono_Variable.p.6bae060c.woff2"
+    ],
+    "[project]/apps/web/src/app/host/dashboard/subscribers/page": [
+      "static/media/GeistMono_Variable.p.6bae060c.woff2",
+      "static/media/Geist_Variable-s.p.f406b17f.woff2",
+      "static/media/d6lPkaOxWMKm7TdezXFmpkr80PhhrGd5OQ-s.p.b10dd6f9.woff2"
+    ],
+    "[project]/apps/web/src/app/login/page": [
+      "static/media/Geist_Variable-s.p.f406b17f.woff2",
+      "static/media/d6lPkaOxWMKm7TdezXFmpkr80PhhrGd5OQ-s.p.b10dd6f9.woff2",
+      "static/media/GeistMono_Variable.p.6bae060c.woff2"
+    ],
+    "[project]/apps/web/src/app/my-events/page": [
+      "static/media/GeistMono_Variable.p.6bae060c.woff2",
+      "static/media/Geist_Variable-s.p.f406b17f.woff2",
+      "static/media/d6lPkaOxWMKm7TdezXFmpkr80PhhrGd5OQ-s.p.b10dd6f9.woff2"
+    ],
+    "[project]/apps/web/src/app/my-events/registered/page": [
+      "static/media/Geist_Variable-s.p.f406b17f.woff2",
+      "static/media/d6lPkaOxWMKm7TdezXFmpkr80PhhrGd5OQ-s.p.b10dd6f9.woff2",
+      "static/media/GeistMono_Variable.p.6bae060c.woff2"
+    ]
+  },
+  "appUsingSizeAdjust": true,
+  "pages": {},
+  "pagesUsingSizeAdjust": false
+}

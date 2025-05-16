@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 20% 8%; /* Very dark desaturated blue-black */
+    --foreground: 210 20% 95%; /* Very light, slightly cool grey */
+
+    --card: 220 20% 12%;
+    --card-foreground: 210 20% 90%;
+
+    --popover: 220 20% 10%;
+    --popover-foreground: 210 20% 95%;
+
+    --primary: 145 70% 55%; /* Neon Green */
+    --primary-foreground: 145 70% 10%; /* Dark for text on neon green */
+
+    --secondary: 208 90% 60%; /* Neon Blue */
+    --secondary-foreground: 208 90% 10%; /* Dark for text on neon blue */
+
+    --muted: 220 20% 15%;
+    --muted-foreground: 210 20% 65%;
+
+    --accent: 200 80% 60%; /* A different Neon Blue/Cyan for accents if needed */
+    --accent-foreground: 200 80% 10%;
+
+    --destructive: 0 80% 55%; /* Neon Red */
+    --destructive-foreground: 0 80% 10%;
+
+    --border: 220 20% 25%;
+    --input: 220 20% 18%; /* Slightly lighter input background */
+    --ring: 145 70% 60%; /* Neon Green for focus rings */
+
+    --radius: 0.5rem;
+
+    /* Sidebar variables - kept for shadcn ui components that might use them, can be themed further if needed */
+    --sidebar-background: 220 20% 10%;
+    --sidebar-foreground: 210 20% 85%;
+    --sidebar-primary: 145 70% 55%;
+    --sidebar-primary-foreground: 145 70% 10%;
+    --sidebar-accent: 220 20% 20%;
+    --sidebar-accent-foreground: 210 20% 90%;
+    --sidebar-border: 220 20% 30%;
+    --sidebar-ring: 145 70% 60%;
+
+    --chart-1: 145 70% 55%;
+    --chart-2: 208 90% 60%;
+    --chart-3: 200 80% 60%;
+    --chart-4: 0 80% 55%;
+    --chart-5: 50 90% 55%; /* Neon Yellow/Orange */
+  }
+
+  .dark {
+    /* Dark theme is the default, but if explicit .dark class is needed, define here or make it same as root */
+    --background: 220 20% 8%;
+    --foreground: 210 20% 95%;
+
+    --card: 220 20% 12%;
+    --card-foreground: 210 20% 90%;
+
+    --popover: 220 20% 10%;
+    --popover-foreground: 210 20% 95%;
+
+    --primary: 145 70% 55%;
+    --primary-foreground: 145 70% 10%;
+
+    --secondary: 208 90% 60%;
+    --secondary-foreground: 208 90% 10%;
+
+    --muted: 220 20% 15%;
+    --muted-foreground: 210 20% 65%;
+
+    --accent: 200 80% 60%;
+    --accent-foreground: 200 80% 10%;
+
+    --destructive: 0 80% 55%;
+    --destructive-foreground: 0 80% 10%;
+
+    --border: 220 20% 25%;
+    --input: 220 20% 18%;
+    --ring: 145 70% 60%;
+
+    --sidebar-background: 220 20% 10%;
+    --sidebar-foreground: 210 20% 85%;
+    --sidebar-primary: 145 70% 55%;
+    --sidebar-primary-foreground: 145 70% 10%;
+    --sidebar-accent: 220 20% 20%;
+    --sidebar-accent-foreground: 210 20% 90%;
+    --sidebar-border: 220 20% 30%;
+    --sidebar-ring: 145 70% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-geist-sans);
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232a2f3b' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-protest-riot);
+  }
+}
+
+@layer utilities {
+  .text-gradient-neon {
+    @apply bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent;
+  }
+  .text-gradient-green-blue {
+    @apply bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 bg-clip-text text-transparent;
+  }
+  .card-interactive-glow {
+    @apply transition-all duration-300 ease-out;
+  }
+  .card-interactive-glow:hover {
+    @apply shadow-[0_0_15px_2px_hsl(var(--primary)/0.5),_0_0_25px_5px_hsl(var(--secondary)/0.3)];
+    transform: translateY(-2px) scale(1.01);
+  }
+  .button-neon-glow {
+    @apply shadow-[0_0_8px_hsl(var(--primary)),_0_0_12px_hsl(var(--primary)/0.7),_inset_0_0_5px_hsl(var(--primary)/0.5)];
+  }
+}
