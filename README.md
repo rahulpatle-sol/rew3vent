@@ -1,173 +1,185 @@
 # Rew3vent - Decentralized Event Platform
 
-Rew3vent is a platform for creating, discovering, and participating in events, leveraging Web3 technologies like Solana for on-chain rewards and interactions, and Genkit for AI-powered features.
+Rew3vent is a decentralized event platform built on **Solana**, powered by **Genkit AI**, and integrated with **Firebase** for seamless Web2.5 experiences. It enables users to create, discover, and participate in events with on-chain rewards, automated AI workflows, and a robust full-stack architecture.
 
-## Project Structure
+---
 
-The project is organized as a monorepo-like structure:
+## 🔥 Features
 
--   **`apps/web/`**: The Next.js frontend application.
-    -   `src/app/`: Contains all Next.js pages, components, API routes, and AI flows.
-    -   `public/`: Static assets.
--   **`contracts/event-reward/`**: The Solana smart contract written in Rust.
-    -   `src/`: Rust source code for the smart contract.
-    -   `Cargo.toml`: Rust package manager file.
-    -   `build.sh`: Script to build the contract.
--   **`lib/`**: Common backend utilities (Node.js) for Firebase, Solana client, and Genkit initialization.
--   **`scripts/`**: Deployment and utility scripts (e.g., deploying the Solana contract).
--   **`idl/`**: Solana Interface Description Language (IDL) files for the smart contract.
--   **`tests/`**: Test files, including tests for the Solana contract.
--   **`.env.example`**: Example environment variable configuration.
--   **`package.json`**: Root package file managing workspaces or global dependencies.
+* ✅ Create & Join Web3-native Events
+* 🎖️ Reward Participants On-chain via Solana
+* 🧠 Genkit-powered AI Flows (Event Suggestions, Moderation)
+* 🌐 Modern Web Stack (Next.js, Tailwind CSS, TypeScript)
+* 🔐 Secure Auth via Firebase & NextAuth.js
+* 🧪 Modular Smart Contracts in Rust
 
-## Getting Started
+---
+
+## 🧱 Project Structure
+
+```
+rew3vent/
+├── apps/web/               # Next.js frontend (App Router)
+│   └── src/app/            # Pages, components, API routes, AI flows
+├── contracts/event-reward/ # Solana smart contract in Rust
+│   ├── src/                # Rust source code
+│   └── build.sh            # Contract build script
+├── lib/                    # Shared backend utils (Firebase, Genkit, Solana Client)
+├── scripts/                # Solana deployment & utility scripts
+├── idl/                    # IDL for Solana smart contract
+├── tests/                  # Test files (incl. contract tests)
+├── .env.example            # Sample environment config
+├── package.json            # Root dependency manager
+└── README.md               # This file
+```
+
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
 
--   Node.js (v18 or later recommended)
--   Yarn or npm
--   Rust and Cargo (for Solana contract development): [Install Rust](https://www.rust-lang.org/tools/install)
--   Solana CLI: [Install Solana CLI](https://docs.solana.com/cli/install-solana-cli-tools)
--   (Optional) Anchor CLI (if using Anchor for Solana development): [Install Anchor](https://www.anchor-lang.com/docs/installation)
--   Firebase Account and Project: [Firebase Console](https://console.firebase.google.com/)
--   Google AI Studio API Key (for Genkit): [Google AI Studio](https://aistudio.google.com/app/apikey)
+* [Node.js](https://nodejs.org/) (v18+)
+* [Yarn](https://yarnpkg.com/) or `npm`
+* [Rust](https://www.rust-lang.org/tools/install)
+* [Solana CLI](https://docs.solana.com/cli/install-solana-cli-tools)
+* (Optional) [Anchor CLI](https://book.anchor-lang.com/getting_started/installation.html)
+* Firebase Project + Genkit API Key
 
 ### 1. Clone the Repository
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/rahulpatle-sol/rew3vent.git
 cd rew3vent
 ```
 
 ### 2. Install Dependencies
 
 ```bash
-npm install
-# or
 yarn install
+# or
+npm install
 ```
 
-### 3. Environment Variables
-
-Copy the `.env.example` file to `.env` and fill in the required values:
+### 3. Setup Environment Variables
 
 ```bash
 cp .env.example .env
 ```
 
-**Key variables to configure:**
+Fill out the following variables:
 
--   `NEXTAUTH_URL`, `NEXTAUTH_SECRET` (generate a secret)
--   Google/GitHub OAuth credentials (if using NextAuth for social login)
--   `NEXT_PUBLIC_FIREBASE_*` variables for Firebase client-side SDK.
--   `GOOGLE_APPLICATION_CREDENTIALS`: Path to your Firebase Admin SDK service account key JSON file.
--   `GOOGLE_API_KEY`: Your Google AI Studio API key.
--   `SOLANA_RPC_URL`: The Solana RPC endpoint (e.g., devnet).
--   `SOLANA_PROGRAM_ID`: Will be set after deploying your Solana contract.
--   `PAYER_SECRET_KEY`: Your Solana payer account's secret key (byte array as a JSON string).
-    -   Generate a new keypair: `solana-keygen new --outfile ~/.config/solana/payer-keypair.json`
-    -   Copy the byte array content from `payer-keypair.json` and format it as a JSON string in your `.env` file (e.g., `PAYER_SECRET_KEY="[12,34,56,...]"`)
+* `NEXTAUTH_URL`, `NEXTAUTH_SECRET`
+* OAuth credentials for Google/GitHub (if used)
+* `NEXT_PUBLIC_FIREBASE_*` variables (from Firebase Web App config)
+* `GOOGLE_API_KEY` (from Google AI Studio)
+* `GOOGLE_APPLICATION_CREDENTIALS` = `./firebase-admin-key.json`
+* `SOLANA_RPC_URL` (e.g., [https://api.devnet.solana.com](https://api.devnet.solana.com))
+* `SOLANA_PROGRAM_ID` (after deployment)
+* `PAYER_SECRET_KEY` = JSON string of Solana keypair array
+
+Generate keypair:
+
+```bash
+solana-keygen new --outfile ~/.config/solana/payer-keypair.json
+```
 
 ### 4. Firebase Setup
 
-1.  Go to your Firebase project settings in the Firebase Console.
-2.  **Web App Setup**:
-    -   Add a web app to your Firebase project.
-    -   Copy the Firebase SDK snippet configuration (apiKey, authDomain, etc.) and update the `NEXT_PUBLIC_FIREBASE_*` variables in your `.env` file.
-3.  **Admin SDK Setup**:
-    -   Go to "Project settings" > "Service accounts".
-    -   Generate a new private key and download the JSON file.
-    -   Save this file securely (e.g., in the root of your project, but ensure it's in your `.gitignore`).
-    -   Set the `GOOGLE_APPLICATION_CREDENTIALS` variable in your `.env` file to the path of this JSON file (e.g., `GOOGLE_APPLICATION_CREDENTIALS=./my-service-account-key.json`).
-4.  **Enable Firebase Services**:
-    -   Enable Firestore (Native mode recommended for new projects).
-    -   Enable Firebase Authentication and configure desired sign-in methods (e.g., Email/Password, Google, GitHub).
+* Enable **Authentication**, **Firestore**, and download Admin SDK key
+* Place the Admin key JSON in root and update `.env`
 
 ### 5. Solana Smart Contract
 
-1.  **Build the Contract**:
-    ```bash
-    cd contracts/event-reward
-    ./build.sh
-    cd ../..
-    ```
-    This will compile the Rust code and place the `.so` file in `contracts/event-reward/target/deploy/`.
-
-2.  **Deploy the Contract**:
-    -   Ensure your Solana CLI is configured to the desired network (e.g., devnet) and has a funded payer keypair.
-        ```bash
-        solana config set --url https://api.devnet.solana.com
-        solana config set --keypair ~/.config/solana/payer-keypair.json # Or your keypair path
-        solana balance # Check balance, airdrop if needed on devnet: solana airdrop 2
-        ```
-    -   Run the deployment script:
-        ```bash
-        ./scripts/deploy-solana.sh
-        ```
-    -   After successful deployment, the script will output the **Program ID**. Update `SOLANA_PROGRAM_ID` in your `.env` file with this ID.
-    -   If using Anchor, the IDL might also be updated and copied to the `idl/` directory.
-
-### 6. Running the Application
-
-1.  **Start the Genkit Development Server** (for local AI flow development, in a separate terminal):
-    ```bash
-    npm run genkit:dev
-    # or
-    yarn genkit:dev
-    ```
-
-2.  **Start the Next.js Development Server**:
-    ```bash
-    npm run dev
-    # or
-    yarn dev
-    ```
-
-The Next.js application will be available at `http://localhost:9002` (or the port specified in `package.json`).
-Genkit UI (if configured and flows are running) might be available at `http://localhost:4000`.
-
-## Development
-
--   **Next.js Frontend**: `apps/web/src/app/`
--   **Genkit AI Flows**: `apps/web/src/ai/flows/` and `lib/genkit.ts` (root level for now, may move to `apps/web/src/ai` if aliasing is preferred).
--   **Solana Contract**: `contracts/event-reward/src/`
--   **Shared Backend Logic**: `lib/`
-
-### Building for Production
+**Build Contract**
 
 ```bash
-npm run build
-# or
-yarn build
+cd contracts/event-reward
+./build.sh
+cd ../..
 ```
 
-This will build the Next.js application in `apps/web/.next/`.
-
-### Running in Production
+**Deploy Contract**
 
 ```bash
-npm run start
-# or
-yarn start
+solana config set --url https://api.devnet.solana.com
+solana config set --keypair ~/.config/solana/payer-keypair.json
+solana airdrop 2 # if needed
+./scripts/deploy-solana.sh
 ```
 
-Ensure your Genkit flows are deployed or accessible in your production environment if they are called via API routes.
+Update `.env` with the returned `SOLANA_PROGRAM_ID`.
 
-## Key Technologies
+### 6. Run the App
 
--   Next.js (App Router)
--   TypeScript
--   Tailwind CSS & ShadCN UI
--   Genkit (for AI features, using Google AI/Gemini by default)
--   Firebase (Authentication, Firestore)
--   Solana (for smart contracts and on-chain interactions)
--   Rust (for Solana smart contract development)
--   NextAuth.js (for authentication, if fully implemented)
+**Start AI Flows**
 
-## Further Steps
+```bash
+yarn genkit:dev
+```
 
--   Implement full NextAuth.js integration for robust user authentication.
--   Develop detailed Solana smart contract logic for event creation, POAPs, and reward distribution.
--   Integrate frontend components with Solana wallet adapters (`@solana/wallet-adapter-react`).
--   Create more Genkit flows for advanced AI features (e.g., personalized event recommendations, automated content moderation).
--   Write comprehensive tests for both frontend and smart contracts.
+**Start Next.js App**
+
+```bash
+yarn dev
+```
+
+App runs at: [http://localhost:9002](http://localhost:9002)
+Genkit UI: [http://localhost:4000](http://localhost:4000)
+
+---
+
+## 🧪 Development Overview
+
+* **Frontend**: `apps/web/src/app/`
+* **AI Flows**: `apps/web/src/ai/flows/`
+* **Solana Contract**: `contracts/event-reward/src/`
+* **Shared Backend**: `lib/`
+
+---
+
+## 🏁 Production Build
+
+```bash
+yarn build && yarn start
+```
+
+Ensure all required Genkit APIs and Firebase configs are set up in your deployment platform.
+
+---
+
+## 🧠 Tech Stack
+
+| Layer      | Tech                                          |
+| ---------- | --------------------------------------------- |
+| Frontend   | Next.js (App Router), Tailwind CSS, ShadCN UI |
+| Blockchain | Solana, Rust, Anchor-compatible               |
+| AI         | Genkit (Google AI / Gemini)                   |
+| Auth & DB  | Firebase Auth, Firestore                      |
+| Dev Tools  | TypeScript, ESLint, Prettier                  |
+
+---
+
+## 🛠️ Next Steps
+
+* [ ] Integrate Solana Wallet Adapter (`@solana/wallet-adapter-react`)
+* [ ] Finalize full NextAuth.js support
+* [ ] Improve POAP & Reward Logic in Smart Contract
+* [ ] Add Test Coverage for Contracts & Web
+* [ ] Expand AI Flows: Recommendations, Moderation, Insights
+
+---
+
+## 👨‍💻 Author
+
+Built with ❤️ by **[Rahul Patle](https://github.com/rahulpatle-sol)** as part of Solana Breakout Hackathon.
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License.
+
+---
+
+> "Empowering decentralized communities to celebrate and collaborate through events — on-chain and beyond."
