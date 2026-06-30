@@ -50,23 +50,32 @@ export function EventForm() {
     mode: "onChange",
   });
 
-  function onSubmit(data: EventFormValues) {
-    console.log(data);
-    // TODO: Replace with actual API call to save event data
-    toast({
-      title: "Event Submitted Successfully!",
-      description: (
-        <div className="mt-2 w-full rounded-md bg-background/50 p-4">
-          <p className="text-sm text-foreground">Your event "{data.title}" has been listed.</p>
-          {/* <pre className="mt-2 w-full rounded-md bg-background p-4 overflow-x-auto">
-            <code className="text-foreground text-xs">{JSON.stringify(data, null, 2)}</code>
-          </pre> */}
-        </div>
-      ),
-      variant: "default",
-      duration: 5000,
-    });
-    form.reset(); // Reset form after submission
+  async function onSubmit(data: EventFormValues) {
+    try {
+      const res = await fetch('/api/events', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      const saved = await res.json();
+      toast({
+        title: "Your event is live! 🎉",
+        description: (
+          <div className="mt-2 w-full rounded-md bg-background/50 p-4">
+            <p className="text-sm text-foreground">"{data.title}" has been created successfully!</p>
+          </div>
+        ),
+        variant: "default",
+        duration: 5000,
+      });
+      form.reset();
+    } catch (err) {
+      toast({
+        title: "Something went wrong",
+        description: "Could not create event. Please try again.",
+        variant: "destructive",
+      });
+    }
   }
 
   return (
@@ -79,9 +88,9 @@ export function EventForm() {
             <FormItem>
               <FormLabel className="text-lg flex items-center"><FileTextIcon className="mr-2 h-5 w-5 text-primary" />Event Title</FormLabel>
               <FormControl>
-                <Input placeholder="e.g., Neon Future Rave" {...field} className="text-base py-3" />
+                <Input placeholder="e.g., Mumbai Web3 Meetup, Crypto Art Workshop Delhi" {...field} className="text-base py-3" />
               </FormControl>
-              <FormDescription>The main title of your event.</FormDescription>
+              <FormDescription>A catchy title that attracts attendees.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -110,7 +119,7 @@ export function EventForm() {
                 <FormControl>
                     <Input type="time" {...field} className="text-base py-3" />
                 </FormControl>
-                <FormDescription>Event start time (your local timezone).</FormDescription>
+                <FormDescription>Enter time in IST</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -124,9 +133,9 @@ export function EventForm() {
             <FormItem>
               <FormLabel className="text-lg flex items-center"><MapPinIcon className="mr-2 h-5 w-5 text-primary" />Location</FormLabel>
               <FormControl>
-                  <Input placeholder="e.g., Metaverse Arena or City Hall" {...field} className="text-base py-3" />
+                  <Input placeholder="e.g., BKC Mumbai, Connaught Place Delhi, Electronic City Bangalore" {...field} className="text-base py-3" />
               </FormControl>
-              <FormDescription>Where will the event take place? (Physical or virtual)</FormDescription>
+              <FormDescription>City and exact location.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -140,13 +149,13 @@ export function EventForm() {
               <FormLabel className="text-lg flex items-center"><Sparkles className="mr-2 h-5 w-5 text-primary" />Description</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Tell us more about your event... What makes it special? What can attendees expect?"
+                  placeholder="What makes your event special? What will attendees learn or do?"
                   className="resize-y min-h-[150px] text-base py-3"
                   {...field}
                 />
               </FormControl>
               <FormDescription>
-                Provide a detailed description. Use AI suggestions if you need inspiration!
+                The more detail you provide, the more attendees you'll attract!
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -160,9 +169,9 @@ export function EventForm() {
             <FormItem>
               <FormLabel className="text-lg flex items-center"><GiftIcon className="mr-2 h-5 w-5 text-primary" />Rewards (Optional)</FormLabel>
               <FormControl>
-                  <Input placeholder="e.g., Exclusive NFT, POAP token, Swag" {...field} className="text-base py-3" />
+                  <Input placeholder="e.g., POAP, NFTs, Swag, Cash Prize" {...field} className="text-base py-3" />
               </FormControl>
-              <FormDescription>What rewards or perks can attendees expect? Web3 rewards are encouraged!</FormDescription>
+              <FormDescription>Why should people attend? What will they get?</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -181,7 +190,7 @@ export function EventForm() {
                     {...field}
                     className="text-base py-3" />
               </FormControl>
-              <FormDescription>Maximum number of attendees. Leave blank for unlimited.</FormDescription>
+              <FormDescription>Maximum attendees. Leave blank for unlimited.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -194,16 +203,16 @@ export function EventForm() {
             <FormItem>
               <FormLabel className="text-lg flex items-center"><ImagePlusIcon className="mr-2 h-5 w-5 text-primary" />Event Image URL (Optional)</FormLabel>
               <FormControl>
-                <Input placeholder="https://example.com/your-event-banner.png" {...field} className="text-base py-3"/>
+                <Input placeholder="https://picsum.photos/seed/your-event/600/400" {...field} className="text-base py-3"/>
               </FormControl>
-              <FormDescription>A direct link to an image for your event banner (e.g., from Picsum, Imgur, or your own hosting).</FormDescription>
+              <FormDescription>A good image that represents your event.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
 
         <Button type="submit" size="lg" className="w-full md:w-auto md:px-12 py-3 button-neon-glow text-base">
-          Create Event & Go Live
+          Create Event & Go Live 🚀
         </Button>
       </form>
     </Form>

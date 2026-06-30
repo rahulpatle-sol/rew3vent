@@ -18,7 +18,8 @@ export default {
       fontFamily: {
         sans: ['var(--font-geist-sans)'],
         mono: ['var(--font-geist-mono)'],
-        display: ['var(--font-protest-riot)'],
+        display: ['var(--font-calligraphy)'],
+        calligraphy: ['var(--font-calligraphy)'],
       },
   		colors: {
   			background: 'hsl(var(--background))',

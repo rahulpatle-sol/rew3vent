@@ -4,7 +4,7 @@ import Link from 'next/link';
 import type { Event } from '@/types';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { CalendarDays, MapPin, Award, ArrowRight } from 'lucide-react';
+import { CalendarDays, MapPin, Award, ArrowRight, Users } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 interface EventCardProps {
@@ -43,12 +43,18 @@ export function EventCard({ event }: EventCardProps) {
       <CardContent className="flex-grow space-y-2">
         <div className="flex items-center space-x-2 text-muted-foreground text-xs">
           <CalendarDays className="h-4 w-4 text-primary/80" />
-          <span>{new Date(event.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })} at {event.time}</span>
+          <span>{new Date(event.date).toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' })} at {event.time}</span>
         </div>
         <div className="flex items-center space-x-2 text-muted-foreground text-xs">
           <MapPin className="h-4 w-4 text-primary/80" />
           <span>{event.location}</span>
         </div>
+        {event.attendees !== undefined && (
+          <div className="flex items-center space-x-2 text-muted-foreground text-xs">
+            <Users className="h-4 w-4 text-primary/80" />
+            <span>{event.attendees.toLocaleString('en-IN')}{event.capacity ? ` / ${event.capacity.toLocaleString('en-IN')}` : ''} attending</span>
+          </div>
+        )}
         <p className="text-sm text-foreground/80 mt-2 line-clamp-3">{event.description}</p>
       </CardContent>
       <CardFooter className="flex flex-col sm:flex-row justify-between items-center gap-3 pt-4">

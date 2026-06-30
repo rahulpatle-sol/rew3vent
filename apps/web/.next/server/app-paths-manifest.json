@@ -1,12 +1,21 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/events/route": "app/api/events/route.js",
+  "/api/genkit/route": "app/api/genkit/route.js",
+  "/api/events/[id]/route": "app/api/events/[id]/route.js",
   "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
+  "/about/page": "app/about/page.js",
+  "/calendar/page": "app/calendar/page.js",
   "/create-event/page": "app/create-event/page.js",
   "/dashboard/page": "app/dashboard/page.js",
+  "/events/[id]/page": "app/events/[id]/page.js",
   "/events/page": "app/events/page.js",
-  "/explore/page": "app/explore/page.js",
   "/host/dashboard/page": "app/host/dashboard/page.js",
   "/host/dashboard/subscribers/page": "app/host/dashboard/subscribers/page.js",
+  "/explore/page": "app/explore/page.js",
   "/login/page": "app/login/page.js",
+  "/my-events/attended/page": "app/my-events/attended/page.js",
+  "/my-events/registered/page": "app/my-events/registered/page.js",
   "/my-events/page": "app/my-events/page.js",
-  "/my-events/registered/page": "app/my-events/registered/page.js"
+  "/page": "app/page.js"
 }

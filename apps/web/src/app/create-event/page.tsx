@@ -9,7 +9,7 @@ export default function CreateEventPage() {
     <div className="space-y-8">
       <PageHeader
         title="Host Your Event"
-        description="Unleash your creativity and bring your event to life on Rew3vent. Fill out the form below to get started."
+        description="Create the next big Web3 event in your city. Fill out the form and show the world!"
       />
       <Card className="max-w-3xl mx-auto shadow-2xl card-interactive-glow border-primary/20">
         <CardHeader className="items-center text-center pt-8">

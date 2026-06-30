@@ -1,0 +1,21 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/api/events/route": "/api/events",
+  "/api/genkit/route": "/api/genkit",
+  "/api/events/[id]/route": "/api/events/[id]",
+  "/api/auth/[...nextauth]/route": "/api/auth/[...nextauth]",
+  "/about/page": "/about",
+  "/calendar/page": "/calendar",
+  "/create-event/page": "/create-event",
+  "/dashboard/page": "/dashboard",
+  "/events/[id]/page": "/events/[id]",
+  "/events/page": "/events",
+  "/host/dashboard/page": "/host/dashboard",
+  "/host/dashboard/subscribers/page": "/host/dashboard/subscribers",
+  "/explore/page": "/explore",
+  "/login/page": "/login",
+  "/my-events/attended/page": "/my-events/attended",
+  "/my-events/registered/page": "/my-events/registered",
+  "/my-events/page": "/my-events",
+  "/page": "/"
+}

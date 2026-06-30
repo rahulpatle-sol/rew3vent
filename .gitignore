@@ -12,6 +12,8 @@
 # next.js
 /.next/
 /out/
+/apps/.next/
+
 
 # Vercel
 .vercel
@@ -47,3 +49,5 @@ firebase-admin-sdk.json
 .turbo
 .env*
 firebase-service-account.json
+./next
+./apps/web/.env
